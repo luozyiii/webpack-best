@@ -113,5 +113,30 @@ chunks: 'async' | 'initial' | 'all' | 函数   - 要分析并优化哪些chunk
 ```
 IE11 不支持箭头函数，能兼容一下？
 使用babel 并且装一些插件即可
-webpack 还要配置一下 ecmaVersion
+webpack 还要配置一下
+```
+
+```js
+// 依赖
+npm install -D babel-loader @babel/core @babel/preset-env
+
+// 配置
+module: {
+    rules: [
+        {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                presets: [
+                    ['@babel/preset-env', { targets: "defaults" }]
+                ]
+                }
+            }
+        }
+    ]
+}
+
+target: ['web', 'es5'],
 ```

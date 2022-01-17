@@ -6,8 +6,9 @@ module.exports = {
         b: './src/b.js'
     },
     output: {
-        filename: '[name]-[chunkhash].js'
+        filename: '[name]-[chunkhash].js',
     },
+    target: ['web', 'es5'],
     optimization: {
         splitChunks: {
             minSize: 6,
@@ -18,18 +19,20 @@ module.exports = {
             name: 'commons'
         }
     },
-    // module: {
-    //     rules: [
-    //         {
-    //             test: /\.js$/,
-    //             exclude: /node_modules)/,
-    //             use: {
-    //                 loader: 'babel-loader',
-    //                 options: {
-    //                 presets: ['@babel/preset-env']
-    //                 }
-    //             }
-    //         }
-    //     ]
-    // }
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                    presets: [
+                        ['@babel/preset-env', { targets: "defaults" }]
+                    ]
+                    }
+                }
+            }
+        ]
+    }
 }

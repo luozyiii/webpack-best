@@ -9,7 +9,10 @@ npm info webpack versions
 
 # webpack 编译
 ./node_modules/.bin/webpack
-
+# 也可以配置 script
+"scripts": {
+    "build": "webpack"
+}
 ```
 
 #### tree sharking
@@ -79,8 +82,8 @@ entry: {
 
 ### 任务一变形4
 ```js
-提取共用依赖
-文档基本没用，去网上找博客
+// 提取共用依赖
+// 文档基本没用，去网上找博客
 
 // a.html => a.js
 // b.html => b.js
@@ -110,33 +113,10 @@ chunks: 'async' | 'initial' | 'all' | 函数   - 要分析并优化哪些chunk
 ```
 
 ### 任务一变形5:
-```
-IE11 不支持箭头函数，能兼容一下？
-使用babel 并且装一些插件即可
-webpack 还要配置一下
-```
-
 ```js
-// 依赖
-npm install -D babel-loader @babel/core @babel/preset-env
+// IE11 不支持箭头函数，能兼容一下？
 
-// 配置
-module: {
-    rules: [
-        {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: [
-                        ['@babel/preset-env', { targets: "defaults" }]
-                    ]
-                }
-            }
-        }
-    ]
-}
-
-target: ['web', 'es5'],
+// 官网链接 https://webpack.js.org/migrate/5/#need-to-support-an-older-browser-like-ie-11
+// 配置，不需要babel-loader
+target: ['web', 'es5']
 ```
